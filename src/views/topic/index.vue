@@ -11,6 +11,9 @@
 <script lang="ts">
 import Vue from "vue";
 import Foot from '@/components/foot.vue'
+import './style.sass'
+import axios from 'axios'
+
 
 export default Vue.extend({
   name: "topic",
