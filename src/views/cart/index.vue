@@ -1,8 +1,7 @@
 <template>
   <div class="box">
-   
      <main class="main">
-   this is cart page
+          this is cart page
     </main>
     <Foot/>
   </div>
