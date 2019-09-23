@@ -1,4 +1,5 @@
 import instence from '@/utils/request'
+// import instance from '@/utils/request'
 // 获取分类页初始化信息数据
 const getHomeData=async ()=>{
     const result = await instence.get('/catalog/index')
@@ -21,9 +22,29 @@ const userAddress=async ()=>{
     console.log(result)
     return result
 }
+const getData = async()=>{
+    const result= await instance.get('/topic/list')
+    console.log(result)
+    return result
+}
+
+const getList=async()=>{
+    const result=await instance.get('/')
+    return result
+}
 export {
     getHomeData,
     getChildData,
     loginMethod,
-    userAddress
+    userAddress,
+    getData,
+    getList
 }
+
+
+
+
+
+
+
+
