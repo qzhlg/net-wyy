@@ -1,0 +1,46 @@
+.logo {
+    width: 100%;
+    padding: 1rem 0 .5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 3.2rem;
+    }
+}
+
+.loginMain {
+    padding: 1.8rem .4rem 0 .4rem;
+
+    .inputWrap {
+        height: 1.8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        input {
+            display: block;
+            height: 80%;
+            border: none;
+            width: 100%;
+            font-size: .4rem;
+        }
+    }
+
+    .loginBtn {
+        margin-top: 1rem;
+        height: 1.8rem;
+        
+        button {
+            width: 99%;
+            color: #fff;
+            background-color: #108ee9;
+            border: 1PX solid #108ee9;
+            border-radius: 5px;
+            font-size: 18px;
+            height: calc(0.47rem*2);
+            line-height: calc(0.47rem*2);
+        }
+    }
+}

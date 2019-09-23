@@ -1,7 +1,25 @@
 <template>
   <div class="box">
      <main class="main">
-    this is mine page
+       <div class="userMesWrap">
+         <div class="userLogo">
+           
+         </div>
+         <div class="userMsgs">
+           <div>
+
+           </div>
+           <div>
+             
+           </div>
+         </div>
+       </div>
+       <div class="userPow">
+
+       </div>
+       <div class="loginOut">
+         退出登录
+       </div>
     </main>
     <Foot/>
   </div>
@@ -14,6 +32,15 @@ export default Vue.extend({
   name: "mine",
   components: {
     Foot
+  },
+  mounted(){
+    
+  },
+  methods:{
+    
   }
 });
 </script>
+<style lang="scss" scoped>
+@import url('./index.css');
+</style>
