@@ -1,6 +1,5 @@
 <template>
   <div class="box">
-   
      <main class="main">
    this is cart page
     </main>
