@@ -1,5 +1,5 @@
 import instence from '@/utils/request'
-// import instance from '@/utils/request'
+import instance from '@/utils/request'
 // 获取分类页初始化信息数据
 const getHomeData=async ()=>{
     const result = await instence.get('/catalog/index')
