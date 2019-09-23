@@ -1,3 +1,22 @@
-import axios from 'axios'
+import instance from '@/utils/request'
 
-export const getdata=()=>axios.get('/topic/related')
+
+const getData = async()=>{
+    const result= await instance.get('/topic/list')
+    console.log(result)
+    return result
+}
+
+const getList=async()=>{
+    const result=await instance.get('/')
+    return result
+}
+
+
+export {
+    getData,
+    getList
+}
+
+
+
