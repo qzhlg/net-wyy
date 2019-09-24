@@ -45,8 +45,8 @@ import './index.css'
 import Veader from '@/components/goodhead/index.vue'
 // import '@/awesome-swiper'
 
-import 'swiper/css/swiper.min.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/css/swiper.min.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default Vue.extend({
     name:'goods',
     data(){

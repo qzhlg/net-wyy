@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 let instance = axios.create({
-    baseURL: 'http://169.254.19.71:8888',
+    baseURL: 'http://localhost:8888',
     timeout: 1000,
   })
 // http请求拦截

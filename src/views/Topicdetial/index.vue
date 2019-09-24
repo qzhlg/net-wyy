@@ -31,8 +31,8 @@ export default Vue.extend({
     }
   },
    mounted() {
-   
     const id=this.$route.params.id
+    console.log(this.$route)
        this. _getDetail(id);
   },
   methods:{

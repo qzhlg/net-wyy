@@ -46,11 +46,9 @@ export default Vue.extend({
       async _getData() {
       const result = await getData();
       this.list = result.data.data.data;
-      // console.log(result.data.data.data);
     },
     getDatalist(id:any){
-      // console.log(this.$router)
-      this.$router.push({name:'topicdetail',params:{id}})
+      this.$router.push(`/toppicdetail/${id}`)
     }
   }
 });

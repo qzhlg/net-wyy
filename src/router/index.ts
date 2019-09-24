@@ -46,7 +46,11 @@ const routes= [
         path:'/topic',
         name:'topic',
         component:()=>import ('@/views/topic/index.vue')
-    }
+    },{
+        path:'/toppicdetail/:id',
+        name:'toppicdetail',
+        component:()=>import ('@/views/Topicdetial/index.vue')
+    },
     {
         path: '/cart',
         name: 'cart',
