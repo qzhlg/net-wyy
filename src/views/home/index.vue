@@ -9,7 +9,7 @@
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
-    <!-- 如果需要分页器 -->
+
     <div class="swiper-pagination"></div>
 </div>
       <div class="channelWrap">
@@ -48,8 +48,6 @@
           </div>
         </div>
       </div>
-
-
       <div class="newGoodsBox">
         <div class="newGoodsTitle">新品首发</div>
         <div class="newGoodsWrap" >
@@ -127,10 +125,6 @@ import { swiper, swiperSlide } from "vue-awesome-swiper";
 import 'swiper/css/swiper.min.css'
 import {getList} from '@/api/index'
 import BScroll from 'better-scroll'
-
-// import vueSwiper from 'vue-awesome-swiper'
-
-// import 'swiper/dist/css/swiper.css'
 
 
 export default Vue.extend({
