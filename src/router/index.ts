@@ -40,13 +40,14 @@ const routes= [
         path: '/topic',
         name: 'topic',
         component: ()=>import ('../views/topic/index.vue'),
-        children:[
-            {
-            path:'/topic/Topicdetail/:id',
-            name:'Topicdetail'
-            }
-    ]
+       
+       
     },{
+        path:'/topic',
+        name:'topic',
+        component:()=>import ('@/views/topic/index.vue')
+    }
+    {
         path: '/cart',
         name: 'cart',
         component: ()=>import ('../views/cart/index.vue')
