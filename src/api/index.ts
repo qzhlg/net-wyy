@@ -1,5 +1,5 @@
 import instence from '@/utils/request'
-// import instance from '@/utils/request'
+import instance from '@/utils/request'
 // 获取分类页初始化信息数据
 const getHomeData=async ()=>{
     const result = await instence.get('/catalog/index')
@@ -19,17 +19,26 @@ const loginMethod=async(params:any)=>{
 // 用户地址数据
 const userAddress=async ()=>{
     const result=await instence.get('/address/list')
-    console.log(result)
+    // console.log(result)
     return result
 }
+// 获取专题数据
 const getData = async()=>{
     const result= await instance.get('/topic/list')
-    console.log(result)
+    // console.log(result)
     return result
 }
-
+// 首页数据
 const getList=async()=>{
     const result=await instance.get('/')
+    return result
+}
+const getDetail=async(id:any)=>{
+    const result=await instance.get('/topic/detail',{
+        params:{
+            id:id
+        }
+    })
     return result
 }
 export {
@@ -38,7 +47,8 @@ export {
     loginMethod,
     userAddress,
     getData,
-    getList
+    getList,
+    getDetail
 }
 
 

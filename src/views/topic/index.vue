@@ -4,7 +4,7 @@
      <main class="main">
      <div class="count" v-for="item in list "
      :key="item.id"
-     @click="getDatas()"
+     @click="getDatalist(item.id)"
      >
       <img :src="item.scene_pic_url" alt="">
       <div class="box-box">
@@ -13,7 +13,7 @@
          <span> {{item.subtitle}}</span>
           
           </div>
-        <div class="tiu">{{item.id}}元起</div>
+        <div class="tiu">{{item.price_info}}元起</div>
       </div>
      </div>
     </main>
@@ -46,11 +46,11 @@ export default Vue.extend({
       async _getData() {
       const result = await getData();
       this.list = result.data.data.data;
-      console.log(result.data.data.data);
+      // console.log(result.data.data.data);
     },
-    getDatas(){
-      this.$router.push(`/topic/Topicdetail`)
-      console.log('cghjk')
+    getDatalist(id:any){
+      // console.log(this.$router)
+      this.$router.push({name:'topicdetail',params:{id}})
     }
   }
 });

@@ -17,12 +17,7 @@ const routes= [
     {
         path:'/topic',
         name:'topic',
-        component:()=>import ('@/views/topic/index.vue'),
-        children:[{
-            path:'/topic/Topicdetail/:id',
-            name:'Topicdetail'
-        }]
-        
+        component:()=>import ('@/views/topic/index.vue')
     },{
         path:'/cart',
         name:'cart',
@@ -37,6 +32,10 @@ const routes= [
         path:'/login',
         name:'login',
         component:()=>import ('@/views/login/login.vue')
-    },
+    },{
+        path:'/topic/Topicdetail/:id',
+        name:'topicdetail',
+        component:()=>import ('../views/Topicdetial/index.vue'),
+    }
   ];
 export default routes;
