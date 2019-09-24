@@ -146,6 +146,7 @@ export default Vue.extend({
       newGoodslist:[],
       hotGoodslist:[],
       categorylist:[],
+      goodslist:[],
        swiperOption: {
         loop: true,
         autoplay: {
@@ -164,7 +165,6 @@ export default Vue.extend({
       async _getList() {
       const result = await getList();
       this.swiperSlides = result.data.data.banner;
-      this.list = result.data.data.banner;
       this.brandlist=result.data.data.brandList;
       this.newGoodslist=result.data.data.newGoodsList;
       this.hotGoodslist=result.data.data.hotGoodsList;
