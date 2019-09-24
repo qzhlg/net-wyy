@@ -12,6 +12,36 @@ const getChildData=async (id:any)=>{
     }})
     return result
 }
+// 获取分类详情数据
+const getCategory=async (id:any)=>{
+    const result=await instance.get('/goods/category',{params:{
+        id:id
+    }})
+    return result
+}
+// 商品信息
+const getgoodsMessage=async (id:any)=>{
+    const result=await instance.get('/goods/list',{params:{
+        categoryId:id,
+        page:1,
+        size:1000
+    }})
+    return result
+}
+// 获取商品查询的相关信息
+const getgoodSearch=async()=>{
+    const result=await instance.get('/search/index')
+    return result
+}
+// 获取商品信息详情
+const getgoosDetail=async(id:any)=>{
+    const result=await instance.get('/goods/detail',{
+        params:{
+            id:id
+        }
+    })
+    return result
+}
 // 登录接口
 const loginMethod=async(params:any)=>{
     return await instence.post('/auth/loginByMobile',params)
@@ -35,7 +65,11 @@ const getList=async()=>{
 export {
     getHomeData,
     getChildData,
+    getCategory,
     loginMethod,
+    getgoodsMessage,
+    getgoodSearch,
+    getgoosDetail,
     userAddress,
     getData,
     getList

@@ -3,14 +3,14 @@
     
     <main class="main">
       <div class="swiper-container">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide"  v-for="item in list" :key="item.id">
-          <img :src="item.image_url" alt="">
-        </div>
-    </div>
+          <swiper :options="swiperOption" class="banner">
+        <swiper-slide v-for="slide in swiperSlides" :key="slide.id">
+         <img :src="slide.image_url" alt="">
+        </swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+      </swiper>
     <!-- 如果需要分页器 -->
     <div class="swiper-pagination"></div>
-   
 </div>
       <div class="channelWrap">
         <dl>
@@ -57,41 +57,39 @@
 import Vue from "vue";
 import Foot from '@/components/foot.vue'
 import './style.scss'
-import Swiper from 'swiper';
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+
 import 'swiper/css/swiper.min.css'
 import {getList} from '@/api/index'
 
 export default Vue.extend({
   name: "home",
   components: {
-    Foot
+    Foot,
+    swiper,
+     swiperSlide 
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      list:[]
+      swiperSlides:[],
+       swiperOption: {
+        loop: true,
+        autoplay: {
+          disableOnInteraction: false
+        },
+        pagination: {
+          el: ".swiper-pagination"
+        }
+      }
     }
   },
   mounted(){
     this._getList();
- 
-         this.getSwiper()
-    
-    
   },
     methods:{
       async _getList() {
       const result = await getList();
-      this.list = result.data.data.banner;
-      console.log(result.data.data.banner);
-    },
-    getSwiper(){
-     new Swiper('.swiper-container', {
-      pagination: {
-        el: '.swiper-pagination',
-        dynamicBullets: true,
-      },
-    }); 
+      this.swiperSlides = result.data.data.banner;
     }
   }
 });

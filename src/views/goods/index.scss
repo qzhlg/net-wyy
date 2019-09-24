@@ -1,0 +1,49 @@
+.swiper{
+    height: calc(4rem*2);
+    background: lavender;
+}
+.serviceList{
+    height: .8rem;
+    background: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .list{
+        height: .8rem;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+       li{
+        flex: 1 1;
+        color: #666;
+        font-size: .24rem;
+        text-align: center;
+        .star{
+            color: red;
+            margin-right: .15rem;
+            font-size: .3rem;
+        }
+       }
+
+    }
+}
+.goodsMsgWrap{
+    padding: .4rem;
+    background: white;
+}
+.goodsSize{
+    margin-top: .02rem;
+    height: 1rem;
+    padding: 0 .4rem;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.goodsAttribute{
+    margin-top: .2rem;
+    padding: .4rem;
+    background: white;
+}
