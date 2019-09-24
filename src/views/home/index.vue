@@ -108,7 +108,6 @@
              <div class="goodsItemName">{{item.name}}</div>
              <div class="goodsItemPrice">￥{{item.retail_price}}</div>
            </a>
-           
          </div>
          
       </div>
@@ -143,6 +142,10 @@ export default Vue.extend({
   data () {
     return {
       swiperSlides:[],
+      brandlist:[],
+      newGoodslist:[],
+      hotGoodslist:[],
+      categorylist:[],
        swiperOption: {
         loop: true,
         autoplay: {

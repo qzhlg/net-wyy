@@ -46,7 +46,7 @@ const routes= [
         path:'/topic',
         name:'topic',
         component:()=>import ('@/views/topic/index.vue')
-    }
+    },
     {
         path: '/cart',
         name: 'cart',
