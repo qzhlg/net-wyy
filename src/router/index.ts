@@ -65,7 +65,11 @@ const routes= [
         },
         
         component: ()=>import ('../views/mine/index.vue')
-    },
+    },{
+        path:'/getCommentlist/:id',
+        name:'getCommentlist',
+        component:()=>import ('../views/topicComment/index.vue')
+    }
 
   ];
 export default routes;

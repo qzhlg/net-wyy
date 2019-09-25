@@ -71,6 +71,28 @@ const getDetail=async(id:any)=>{
     })
     return result
 }
+const getComment=async(id:any)=>{
+    const result=await instance.get('/comment/list',{
+        params:{
+            valueId:id,
+            typeId:1,
+            size:5,
+            page:1,
+            
+        }
+    })
+    return result
+}
+const getRelated=async(id:any)=>{
+    const result=await instance.get('/topic/related',{
+        params:{
+            id:id
+        }
+    })
+    return result
+}
+
+
 export {
     getHomeData,
     getChildData,
@@ -82,7 +104,9 @@ export {
     userAddress,
     getData,
     getList,
-    getDetail
+    getDetail,
+    getComment,
+    getRelated
 }
 
 
