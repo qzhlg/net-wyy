@@ -6,7 +6,7 @@
         v-for="item in list"
         :key="item.id"
         @click="getDatalist(item.id)"
-      >
+      >        
         <img :src="item.scene_pic_url" alt="" />
         <div class="box-box">
           <div class="tium">{{ item.title }}</div>

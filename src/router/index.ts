@@ -99,6 +99,10 @@ const routes = [
         path:'/topicMore/:id',
         name:'topicMore',
         component:()=>import('../views/topicMore/index.vue')
+    },{
+      path:'/collect/:id',
+      name:'collect',
+      component:()=>('../views/collect/index.vue')
     }
 ];
 export default routes;
