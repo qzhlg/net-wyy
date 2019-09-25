@@ -25,7 +25,7 @@
         <div class="brandTitle">品牌制造商直供</div>
           <div class="brandWrap">
             <div class="brandItem" v-for="item in brandlist" :key="item.id" @click="gobrandDetail(item.id)">
-              <img :src="item.pic_url" alt="" class="imgLazyload loadEnd" />
+              <img v-lazy="item.pic_url" alt="" class="imgLazyload loadEnd" />
               <div class="brandItemName">{{ item.name }}</div>
               <div class="brandItemMinPrice">{{ item.floor_price }}元起</div>
             </div>
@@ -36,7 +36,7 @@
         <div class="newGoodsWrap">
           <dl class="newGoodsItem" v-for="item in newGoodslist" :key="item.id" @click="goGoods(item.id)">
             <dt class="imgLazyload loadEnd">
-              <img :src="item.list_pic_url" alt="" />
+              <img v-lazy="item.list_pic_url" alt="" />
             </dt>
             <dd class="newGoodsName">{{ item.name }}</dd>
             <dd class="newGoodsPrice">￥{{ item.retail_price }}</dd>
@@ -49,7 +49,7 @@
         <div class="hotGoodsWrap">
           <dl class="hotGoodsItem" v-for="item in hotGoodslist" :key="item.id" @click="goGoods(item.id)">
             <dt class="imgLazyload loadEnd">
-              <img :src="item.list_pic_url" alt="" />
+              <img v-lazy="item.list_pic_url" alt="" />
             </dt>
             <dd class="hotGoodsInfos">
               <div class="hotGoodsName">{{ item.name }}</div>

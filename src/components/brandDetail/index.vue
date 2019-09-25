@@ -15,13 +15,11 @@
                <div class="item">
                     <span v-for="item in brandData" :key="item.id" @click="goGoods(item.id)"> 
                     <div class="goodImg">
-                        <img :src="item.list_pic_url" alt="">
+                        <img v-lazy="item.list_pic_url" alt="">
                     </div>
                     <div v-text="item.name" class="name"></div>
                     <div class="price">￥{{item.retail_price}}</div>
                 </span>
-                
-              
             </div>
       </main>
     </div>

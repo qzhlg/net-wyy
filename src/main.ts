@@ -5,11 +5,11 @@ import store from "./store";
 import VueLazyload from "vue-lazyload";
 
 Vue.config.productionTip = false;
-Vue.use(VueLazyload);
+
 
 Vue.use(VueLazyload, {
-  preLoad: 2,
-  loading: "./assets/timg.gif",
+  preLoad: 1.3,
+  loading: "http://hbimg.b0.upaiyun.com/98aefafe79d36f431f17dba205b3d4faa3684a2f96c1-qG1kd0_fw658",
   attempt: 1
 });
 new Vue({
