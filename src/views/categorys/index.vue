@@ -83,7 +83,7 @@ export default Vue.extend({
       this.$router.push(`/goods/${id}`);
     },
     back() {
-      this.$router.push("/catelog");
+      this.$router.back();
     }
   }
 });

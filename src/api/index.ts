@@ -1,5 +1,6 @@
 import instence from "@/utils/request";
 import instance from "@/utils/request";
+import { __awaiter } from 'tslib';
 // 获取分类页初始化信息数据
 const getHomeData = async () => {
   const result = await instence.get("/catalog/index");
@@ -78,6 +79,25 @@ const getList = async () => {
   const result = await instance.get("/");
   return result;
 };
+// 首页 品牌详情
+const getbrandDetail=async (id:any)=>{
+    const result =await instance.get('/brand/detail',{
+        params:{
+            id:id
+        }
+    })
+    return result
+}
+const getbrandList=async (id:any)=>{
+    const result=await instance.get('/goods/list',{
+        params:{
+            brandId:id,
+            page:1,
+            size:10000
+        }
+    })
+    return result
+}
 const getDetail = async (id: any) => {
   const result = await instance.get("/topic/detail", {
     params: {
@@ -98,5 +118,7 @@ export {
   getData,
   getAcount,
   getList,
-  getDetail
+  getDetail,
+  getbrandDetail,
+  getbrandList
 };

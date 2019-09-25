@@ -1,0 +1,51 @@
+.brand {
+    height: auto;
+    // margin: 40px auto 0;
+
+    .image {
+        height: calc(2.3rem*2);
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+    }
+
+    .mesg {
+        width: 100%;
+        line-height: .4rem;
+        padding: .4rem;
+        background: white;
+        text-indent: 2em;
+        color: gray;
+    }
+}
+
+.item {
+    width: 100%;
+    height: auto;
+
+    span {
+        width: 50%;
+        float: left;
+        .goodImg {
+           img{
+            width: 100%;
+            height: 100%;
+           }
+        }
+        .name{
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .price{
+            color: red;
+            font-weight: 500;
+            text-align: center;
+            padding: 10px 0;
+        }
+    }
+}

@@ -12,32 +12,19 @@
         <div class="swiper-pagination"></div>
       </div>
       <div class="channelWrap">
-        <dl>
-          <dt></dt>
-          <dd>居家</dd>
+        <dl v-for="item in channel" :key="item.id" @click="goDetail(item.id)">
+          <dt>
+            <img :src="item.icon_url" alt="">
+          </dt>
+          <dd v-text="item.name"></dd>
         </dl>
-        <dl>
-          <dt></dt>
-          <dd>餐具</dd>
-        </dl>
-        <dl>
-          <dt></dt>
-          <dd>配件</dd>
-        </dl>
-        <dl>
-          <dt></dt>
-          <dd>服装</dd>
-        </dl>
-        <dl>
-          <dt></dt>
-          <dd>支取</dd>
-        </dl>
+      
       </div>
 
       <div class="brandBox">
         <div class="brandTitle">品牌制造商直供</div>
         <div class="brandWrap">
-          <div class="brandItem" v-for="item in brandlist" :key="item.id">
+          <div class="brandItem" v-for="item in brandlist" :key="item.id" @click="gobrandDetail(item.id)">
             <img :src="item.pic_url" alt="" class="imgLazyload loadEnd" />
             <div class="brandItemName">{{ item.name }}</div>
             <div class="brandItemMinPrice">{{ item.floor_price }}元起</div>
@@ -124,6 +111,7 @@ export default Vue.extend({
       hotGoodslist: [],
       categorylist: [],
       goodslist: [],
+      channel:[],
       swiperOption: {
         loop: true,
         autoplay: {
@@ -147,7 +135,15 @@ export default Vue.extend({
       this.hotGoodslist = result.data.data.hotGoodsList;
       this.categorylist = result.data.data.categoryList;
       this.goodslist = result.data.data.categoryList[0].goodsList;
-      // console.log(result.data.data.categoryList[0].goodsList)
+      this.channel=result.data.data.channel
+      console.log(result.data.data.channel)
+    },
+     gobrandDetail(bid){
+      console.log(bid)
+      this.$router.push(`/brandDetail/${bid}`)
+    },
+    goDetail(id){
+      this.$router.push(`/categorys/${id}`)
     }
   }
 });

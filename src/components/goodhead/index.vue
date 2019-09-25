@@ -7,7 +7,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import "./index.css";
+
 export default Vue.extend({
   name: "goodhead",
   components: {},

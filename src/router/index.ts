@@ -16,6 +16,11 @@ const routes = [
     component: () => import("../views/home/index.vue")
   },
   {
+    path:'/brandDetail/:bid',
+    name:'gobrandDetail',
+    component:()=>import ('../views/brandDetail/index.vue')
+  },
+  {
     path: "/catelog",
     name: "catelog",
     component: () => import("../views/catelog/index.vue")
