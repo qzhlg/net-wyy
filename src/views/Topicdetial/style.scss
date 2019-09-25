@@ -1,0 +1,144 @@
+.noTabPageContent{
+    padding-top: 1.04rem;
+    min-height: 100%;
+}
+.topicDetail{
+    width: 100%;
+    overflow-x: hidden;
+}
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1rem;
+    background: white;
+    box-shadow: 0 0.04rem 0.08rem 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    justify-content: space-between;
+    padding: 0 15px ;
+    box-sizing: border-box;
+}
+.commentWrap{
+    width: 100%;
+    height: auto;
+    background: white;
+    margin-top: .2rem;
+
+    .titleLine{
+        width: 100%;
+        height: 1rem;
+        position: relative;
+        display: flex;
+        padding: 0 .2rem;
+    .titleName{
+        flex: 1 1;
+        height: 100%;
+        line-height: 1rem;
+        font-size: .3rem;
+    }
+    .titleIcon{
+        width: 1rem;
+        height: auto;
+        line-height: 1rem;
+        text-align: right;
+        font-size: .4rem;
+    }
+    }
+}
+.commentList{
+    background: white;
+    padding: .2rem;
+    .commentItem{
+        width: 100%;
+        height: auto;
+        position: relative;
+        background: white;
+        color: gray;
+        padding-bottom: .1rem;
+        .userInfo{
+            height: .8rem;
+            line-height: .8rem;
+            font-size: .24rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+        .userInfo div:nth-child(1){
+            flex: 1 1;
+            color: black;
+        }
+        .userInfo div:nth-child(2){
+            width: auto;
+        }
+        .userComment{
+            line-height: .6rem;
+            font-size: .3rem;
+            }
+        }
+        .commentPicList{
+            // display: flex;
+            border-bottom: 1px solid #ccc;
+        }
+    }
+
+.topicDetailImg{
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 10px solid #f9f7f8;
+    img{
+        border-style: none;
+        width: 100%;
+        height: 6rem;
+    }
+}
+.relateTopic{
+    margin-top: .2rem;
+    padding: 0 .2rem;
+    height: 22rem;
+    .relateTopicTitle{
+        line-height: .8rem;
+        text-align: center;
+        background: #f9f7f8;
+        width: 100%;
+    }
+    .relateTopicItem{
+        background: white;
+        padding: .2rem .2rem 0 .2rem;
+        margin-bottom: .2rem;
+        display: block;
+        width: 100%;
+        height: 5.1rem;
+        .imgLazyload{
+            opacity: 1;
+            -webkit-transition: all 1s;
+            transition: all 1s;
+           
+        }
+        img{
+            width: 100%;
+            height: 4rem;
+        }
+        div{
+            line-height: 1rem;
+            color: gray;
+            font-size: .28rem;
+        }
+    }
+
+}
+.moreComment{
+    line-height: .8rem;
+    text-align: center;
+    display: block;
+.a{
+    background: transparent;
+    text-decoration: none;
+    outline: none
+}
+}

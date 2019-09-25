@@ -46,11 +46,6 @@ const routes = [
     component: () => import("../views/topic/index.vue")
   },
   {
-    path: "/topic",
-    name: "topic",
-    component: () => import("@/views/topic/index.vue")
-  },
-  {
     path: "/toppicdetail/:id",
     name: "toppicdetail",
     component: () => import("@/views/Topicdetial/index.vue")
@@ -66,8 +61,44 @@ const routes = [
     meta: {
       autorization: true
     },
-
     component: () => import("../views/mine/index.vue")
-  }
+  },
+    {
+        path: '/goods/:id',
+        name: 'goods',
+        component: ()=>import ('../views/goods/index.vue')
+    },
+    {
+        path: '/topic',
+        name: 'topic',
+        component: ()=>import ('../views/topic/index.vue'),
+    },
+    {
+        path:'/toppicdetail/:id',
+        name:'toppicdetail',
+        component:()=>import ('@/views/Topicdetial/index.vue')
+    },
+    {
+        path: '/cart',
+        name: 'cart',
+        component: ()=>import ('../views/cart/index.vue')
+    },
+    {
+        path: '/mine',
+        name: 'mine',
+        meta:{
+            autorization:true
+        },
+        
+        component: ()=>import ('../views/mine/index.vue')
+    },{
+        path:'/getCommentlist/:id',
+        name:'getCommentlist',
+        component:()=>import ('../views/topicComment/index.vue')
+    },{
+        path:'/topicMore/:id',
+        name:'topicMore',
+        component:()=>import('../views/topicMore/index.vue')
+    }
 ];
 export default routes;
