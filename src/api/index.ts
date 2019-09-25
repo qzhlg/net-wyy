@@ -106,27 +106,36 @@ const getDetail = async (id: any) => {
   });
   return result;
 };
-const getComment=async(id:any)=>{
+const getComment=async(id:any,num:any)=>{
     const result=await instance.get('/comment/list',{
         params:{
             valueId:id,
             typeId:1,
-            size:5,
+            size:num,
             page:1,
             
         }
     })
     return result
 }
-const getRelated=async(id:any)=>{
+const getRelated=async(uid:any)=>{
     const result=await instance.get('/topic/related',{
         params:{
-            id:id
+            id:uid
         }
     })
     return result
 }
-
+// 用户评论
+const goMessage=async (id:any,val:any)=>{
+  console.log(id)
+  const result=await instance.post('/comment/post',{
+    valueId:id,
+    typeId:1,
+    content:val
+  })
+  return result
+}
 export {
   getHomeData,
   getChildData,
@@ -143,7 +152,8 @@ export {
   getbrandDetail,
   getbrandList,
   getComment,
-  getRelated
+  getRelated,
+  goMessage
 };
 
 

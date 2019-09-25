@@ -22,6 +22,7 @@
       <div class="categoContet">
         <div class="categoryWrap">
           <img :src="currentitem.wap_banner_url" alt="" class="img" />
+          
           <span>{{ currentitem.front_desc }}</span>
         </div>
         <div class="categoryTitle">

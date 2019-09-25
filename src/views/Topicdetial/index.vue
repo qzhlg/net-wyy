@@ -38,7 +38,7 @@
             </div>
              
           </div>
-         <a class="moreComment" @click="getListclick(id)">查看更多评论</a>
+         <a class="moreComment" @click="getListclick(uid)">查看更多评论</a>
         </div>
 
         <div class="relateTopic">
@@ -74,21 +74,20 @@ export default Vue.extend({
   },
    mounted() {
     const id=this.$route.params.id
-      // console.log(id)
+      const num=1
        this. _getDetail(id);
-       this. _getComment(id);
+       this. _getComment(id,num);
        this._getRelated(id)
   },
   methods:{
-    
-    async _getDetail(id:any) {
+      async _getDetail(id:any) {
       const result = await getDetail(id);
       this.headerlist = result.data.data;
- 
     },
-    async _getComment(id:any) {
-      const result = await getComment(id);
+    async _getComment(id:any,num:any) {
+      const result = await getComment(id,num);
       this.getcomment = result.data.data.data;
+      console.log( result.data.data.data)
     },
       async _getRelated(id:any) {
       const result = await getRelated(id);
@@ -103,8 +102,15 @@ export default Vue.extend({
       
     },
     getListclick(id:any){
-      this.$router.push(`/topicMore/${id}`)
-      console.log(this.$router)
+       const uid=this.$route.params.id
+      this.$router.push({
+        name:'topicMore',
+        params:{
+          id:uid,
+          typeId:'1'
+        }
+      })
+      // this.$router.push(`/topicMore/${uid}`)
     }
   }
 });

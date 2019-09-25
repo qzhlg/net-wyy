@@ -4,7 +4,7 @@
       <div class="swiper-container">
         <swiper :options="swiperOption" class="banner">
           <swiper-slide v-for="slide in swiperSlides" :key="slide.id">
-            <img :src="slide.image_url" alt="" />
+            <img v-lazy="slide.image_url" alt="" />
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
