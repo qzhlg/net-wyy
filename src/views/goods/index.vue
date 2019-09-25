@@ -64,13 +64,14 @@
       </div>
       <div class="goodsAttribute">
         <div class="shopMes">大家都在看</div>
-        <span v-for="acount in goodlist" :key="acount.id" class="goodlist">
+        <!-- <span v-for="acount in goodlist" :key="acount.id" class="goodlist" @click="goGood(acount.id)">
             <div>
                 <img v-lazy="acount.list_pic_url" alt="">
             </div>
             <div v-text="acount.name" class="goodsname"></div>
             <p>￥{{acount.retail_price}}元</p>
-        </span>
+        </span> -->
+        <Vcontent :goodlist="goodlist"/>
       </div>
     </main>
   </div>
@@ -81,6 +82,7 @@ import { getgoosDetail,getAcount } from "@/api/index";
 import "./index.css";
 import Veader from "@/components/goodhead/index.vue";
 import "swiper/css/swiper.min.css";
+import Vcontent from '@/components/allseegood/index.vue'
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 
 export default Vue.extend({
@@ -107,7 +109,8 @@ export default Vue.extend({
   components: {
     Veader,
     swiper,
-    swiperSlide
+    swiperSlide,
+    Vcontent
   },
   mounted() {
     const id = this.$route.params.id;

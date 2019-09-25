@@ -13,7 +13,7 @@
                 <div class="mesg" v-text="brandlist.simple_desc"> </div>
             </div>
                <div class="item">
-                    <span v-for="item in brandData" :key="item.id"> 
+                    <span v-for="item in brandData" :key="item.id" @click="goGoods(item.id)"> 
                     <div class="goodImg">
                         <img :src="item.list_pic_url" alt="">
                     </div>
@@ -35,6 +35,9 @@ export default Vue.extend({
     methods:{
         goBack(){
             this.$router.back()
+        },
+        goGoods(id:any){
+            this.$router.push(`/goods/${id}`)
         }
     }
 })
