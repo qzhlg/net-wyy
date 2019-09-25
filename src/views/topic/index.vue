@@ -28,7 +28,7 @@ import './style.scss'
 import axios from 'axios'
 import {getData} from '@/api/index'
 
-console.log(getData)
+// console.log(getData)
 export default Vue.extend({
   name: "topic",
   components: {

@@ -69,6 +69,10 @@ const routes= [
         path:'/getCommentlist/:id',
         name:'getCommentlist',
         component:()=>import ('../views/topicComment/index.vue')
+    },{
+        path:'/topicMore/:id',
+        name:'topicMore',
+        component:()=>import('../views/topicMore/index.vue')
     }
 
   ];

@@ -38,11 +38,11 @@
             </div>
              
           </div>
-         <a class="moreComment">查看更多评论</a>
+         <a class="moreComment" @click="getListclick(id)">查看更多评论</a>
         </div>
 
-        <div class="relateTopic"  >
-          <div class="relateTopicTitle">推荐专题</div>
+        <div class="relateTopic">
+          <div class="relateTopicTitle" >推荐专题</div>
           <div class="relateTopicItem" v-for="item in getrelated"
           :key="item.id"
        
@@ -78,7 +78,7 @@ export default Vue.extend({
   },
    mounted() {
     const id=this.$route.params.id
-      console.log(id)
+      // console.log(id)
        this. _getDetail(id);
        this. _getComment(id);
        this._getRelated(id)
@@ -106,6 +106,10 @@ export default Vue.extend({
       this.$router.push(`/getCommentlist/${id}`)
       
     },
+    getListclick(id:any){
+      this.$router.push(`/topicMore/${id}`)
+      console.log(this.$router)
+    }
   },
  
   
