@@ -2,17 +2,13 @@
     <div class="box">
     <Veader :titleMes="titleMes"/>
     <main class="main">
-            <!-- <div class="swiper-container">
-            <swiper :options="swiperOption" class="banner">
+        <div class="swiper">
+             <swiper :options="swiperOption" class="banner">
             <swiper-slide v-for="slide in banner" :key="slide.id">
-            <img :src="slide.image_url" alt="">
+            <img :src="slide.img_url" alt="">
             </swiper-slide>
             <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
-    
-        <div class="swiper-pagination"></div> -->
-        <div class="swiper">
-
         </div>
         <div class="serviceList">
             <ul class="list">
@@ -31,10 +27,44 @@
             </ul>
         </div>
         <div class="goodsMsgWrap">
-            <h1>{{titleMes.name}}</h1>
+            <h1 class="title">{{titleMes.name}}</h1>
+           <h2 v-for="it in product" :key="it.goods_id" class="price">￥{{it.retail_price}}</h2>
         </div>
-        <div class="goodsSize"></div>
-        <div class="goodsAttribute"></div>
+        <div class="goodsSize">
+           <div class="null"></div>
+           <div class="xs">X0</div>
+           <div class="check">选择规格&gt;</div>
+        </div>
+        <div class="goodsAttribute">
+            <div class="shopMes">商品参数</div>
+             <ul>
+                <li v-for="(item,index) in sizeInfo" :key="index">
+                    <span v-text="item.name" class="size"></span>
+                    <span v-text="item.value" class="val"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="topicDetailImg">
+              
+            <p  v-html='titleMes.goods_desc'>
+              {{titleMes.goods_desc}}
+            </p>
+        </div>
+        <div class="goodsAttribute">
+            <div class="shopMes">常见问题</div>
+            <div class="problemItem" v-for="is in issueMes" :key="is.id">
+                <div class="problem">
+                    <span>√</span>
+                    {{is.question}}
+                </div>
+              
+                <p class="answer">{{is.answer}}</p>
+            </div>
+        </div>
+        <div class="goodsAttribute">
+            <div class="shopMes">大家都在看</div>
+
+        </div>
     </main>
     </div>
 </template>
@@ -43,10 +73,9 @@ import Vue from 'vue'
 import {getgoosDetail} from '@/api/index'   
 import './index.css'
 import Veader from '@/components/goodhead/index.vue'
-// import '@/awesome-swiper'
+import 'swiper/css/swiper.min.css'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
-// import 'swiper/css/swiper.min.css'
-// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default Vue.extend({
     name:'goods',
     data(){
@@ -55,13 +84,22 @@ export default Vue.extend({
             banner:[],
             titleMes:{},
             issueMes:[],
-            product:[]
+            product:[],
+            swiperOption: {
+            loop: true,
+            autoplay: {
+            disableOnInteraction: false
+            },
+            pagination: {
+            el: ".swiper-pagination"
+            }
+        }
         }
     },
     components:{
         Veader,
-        //  swiper,
-        //   swiperSlide
+         swiper,
+          swiperSlide
     },
     mounted(){
         const id=this.$route.params.id
@@ -70,7 +108,7 @@ export default Vue.extend({
     methods:{
         async _getdetailList(id:any){
             const result=await getgoosDetail(id)
-            console.log(result.data.data.info)
+            console.log(result.data.data)
             this.sizeInfo=result.data.data.attribute
             this.banner=result.data.data.gallery
             this.titleMes=result.data.data.info
