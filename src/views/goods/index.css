@@ -188,7 +188,26 @@
   padding: 10px 6px;
 }
 
-.allLook {
+.goodsAttribute .goodlist {
+  width: 50%;
+  float: left;
+}
+
+.goodsAttribute .goodlist img {
   width: 100%;
-  height: auto;
+  height: 100%;
+}
+
+.goodsAttribute .goodlist .goodsname {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  overflow: hidden;
+}
+
+.goodsAttribute .goodlist p {
+  color: red;
+  padding: 10px 0;
+  text-align: center;
 }

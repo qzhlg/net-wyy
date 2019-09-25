@@ -19,7 +19,13 @@
       <div class="searchItemWrap">
         <div class="title">热门搜索</div>
         <div class="listWrap">
-          <button v-for="(item,index) in searchList" :key="index" class="listItem">{{item.keyword}}</button>
+          <button
+            v-for="(item, index) in searchList"
+            :key="index"
+            class="listItem"
+          >
+            {{ item.keyword }}
+          </button>
         </div>
       </div>
     </div>
@@ -28,27 +34,27 @@
 <script lang="ts">
 import Vue from "vue";
 import "./index.css";
-import {getgoodSearch} from '@/api/index'
+import { getgoodSearch } from "@/api/index";
 export default Vue.extend({
-    name:'goodSearch',
-    data(){
-        return{
-          searchList:[]
-        }
+  name: "goodSearch",
+  data() {
+    return {
+      searchList: []
+    };
+  },
+  mounted() {
+    this._getSearchdata();
+  },
+  methods: {
+    async _getSearchdata() {
+      const result = await getgoodSearch();
+      this.searchList = result.data.data.hotKeywordList;
+      console.log(result.data.data.hotKeywordList);
+      console.log(result.data.data.historyKeywordList);
     },
-    mounted(){
-      this._getSearchdata()
-    },
-    methods:{
-        async _getSearchdata(){
-          const result=await getgoodSearch()
-          this.searchList=result.data.data.hotKeywordList
-          console.log(result.data.data.hotKeywordList)
-          console.log(result.data.data.historyKeywordList)
-        },
-        goback(){
-            this.$router.push('/catelog');
-        }
+    goback() {
+      this.$router.push("/catelog");
     }
+  }
 });
 </script>

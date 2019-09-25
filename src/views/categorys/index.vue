@@ -9,28 +9,34 @@
       <ul class="navtitle">
         <li>
           <span
-            v-for="(list,index) in navTitle"
+            v-for="(list, index) in navTitle"
             :key="list.id"
-            @click="clickItem(list.id,index)"
-            :class="{active:current===index}"
-          >{{list.name}}</span>
+            @click="clickItem(list.id, index)"
+            :class="{ active: current === index }"
+            >{{ list.name }}</span
+          >
         </li>
       </ul>
     </div>
 
     <main class="main">
       <div class="categoryDetail">
-        <div class="top">{{currents.name}}</div>
-        <div class="bot">{{currents.front_name}}</div>
+        <div class="top">{{ currents.name }}</div>
+        <div class="bot">{{ currents.front_name }}</div>
       </div>
       <div class="goodsList">
-        <dl v-for="list in goods" :key="list.id" class="list" @click="godetail(list.id)">
+        <dl
+          v-for="list in goods"
+          :key="list.id"
+          class="list"
+          @click="godetail(list.id)"
+        >
           <dt>
             <img v-lazy="list.list_pic_url" alt />
           </dt>
           <dd>
             <p class="size" v-html="list.name"></p>
-            <p class="price">￥{{list.retail_price}}</p>
+            <p class="price">￥{{ list.retail_price }}</p>
           </dd>
         </dl>
       </div>
@@ -73,8 +79,8 @@ export default Vue.extend({
       this.goods = resultlist.data.data.data;
       this.current = index;
     },
-    godetail(id:any){
-      this.$router.push(`/goods/${id}`)
+    godetail(id: any) {
+      this.$router.push(`/goods/${id}`);
     },
     back() {
       this.$router.push("/catelog");

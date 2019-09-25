@@ -192,7 +192,26 @@
     }
 
 }
-.allLook{
-    width: 100%;
-    height: auto;
+.goodsAttribute{
+    
+    .goodlist{
+        width: 50%;
+        float: left;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .goodsname{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+           overflow: hidden;
+        }
+        p{
+            color: red;
+            padding: 10px 0;
+            text-align: center;
+        }
+    }
 }
