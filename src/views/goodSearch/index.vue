@@ -23,6 +23,7 @@
             v-for="(item, index) in searchList"
             :key="index"
             class="listitem"
+            @click="search(item.keyword)"
           >
             {{ item.keyword }}
           </button>
@@ -34,12 +35,13 @@
 <script lang="ts">
 import Vue from "vue";
 import "./index.css";
-import { getgoodSearch } from "@/api/index";
+import { getgoodSearch,lazySearch } from "@/api/index";
 export default Vue.extend({
   name: "goodSearch",
   data() {
     return {
-      searchList: []
+      searchList: [],
+      replaceStatic:false
     };
   },
   mounted() {
@@ -49,9 +51,15 @@ export default Vue.extend({
     async _getSearchdata() {
       const result = await getgoodSearch();
       this.searchList = result.data.data.hotKeywordList;
+      console.log(result.data.data.hotKeywordList)
     },
     goback() {
       this.$router.push("/catelog");
+    },
+    // 模糊搜索
+    search(keyword:any){
+      console.log(keyword)
+      lazySearch(keyword)
     }
   }
 });

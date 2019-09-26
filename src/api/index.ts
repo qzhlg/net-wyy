@@ -164,7 +164,20 @@ const getCollect=async()=>{
 })
 return result
 }
-
+// 模糊搜索
+const lazySearch=async(keyword:any)=>{
+  console.log(keyword)
+  const result=await instance.get('/search/helper',{
+    params:{
+      keyword:keyword,
+      page:1,
+      size:100,
+      order:'desc',
+      categoryId:0
+    }
+  })
+  return result
+}
 export {
   getHomeData,
   getChildData,
@@ -186,7 +199,8 @@ export {
   getgoodsCount,
   addCart,
   getCartData,
-  getCollect
+  getCollect,
+  lazySearch
 };
 
 
