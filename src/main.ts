@@ -3,9 +3,10 @@ import App from "./App.vue";
 import router from "./router/router";
 import store from "./store";
 import VueLazyload from "vue-lazyload";
+import axios from 'axios'
 
 Vue.config.productionTip = false;
-
+axios.defaults.headers.common['x-nideshop-token'] = window.localStorage.getItem('token');
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,

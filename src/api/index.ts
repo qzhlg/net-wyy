@@ -127,6 +127,16 @@ const getRelated=async(id:any)=>{
     return result
 }
 
+const getCollect=async()=>{
+  const result=await instance.get('/collect/list',{
+    params:{
+      typeId:0,
+      size:1000
+    }
+})
+return result
+}
+
 export {
   getHomeData,
   getChildData,
@@ -143,7 +153,8 @@ export {
   getbrandDetail,
   getbrandList,
   getComment,
-  getRelated
+  getRelated,
+  getCollect
 };
 
 
