@@ -98,13 +98,14 @@ export default Vue.extend({
   mounted() {},
   methods: {
     collctList() {
-      // console.log(id)
-      console.log()
       this.$router.push('/collect')
       
     },
     getloginOut() {
-      console.log("ddddd");
+      
+      window.localStorage.removeItem('token')
+      window.localStorage.removeItem('nideShopUser')
+      this.$router.push('/login')
     }
   }
 });

@@ -5,7 +5,7 @@
       <div class="swiper">
         <swiper :options="swiperOption" class="banner">
           <swiper-slide v-for="slide in banner" :key="slide.id">
-            <img :src="slide.img_url" alt="" />
+            <img :src="slide.img_url" alt />
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
@@ -28,9 +28,7 @@
       </div>
       <div class="goodsMsgWrap">
         <h1 class="title">{{ titleMes.name }}</h1>
-        <h2 v-for="it in product" :key="it.goods_id" class="price">
-          ￥{{ it.retail_price }}
-        </h2>
+        <h2 v-for="it in product" :key="it.goods_id" class="price">￥{{ it.retail_price }}</h2>
       </div>
       <div class="goodsSize">
         <div class="null"></div>
@@ -42,14 +40,12 @@
         <ul>
           <li v-for="(item, index) in sizeInfo" :key="index">
             <span v-text="item.name" class="size"></span>
-            <span v-text="item.value" class="val" ></span>
+            <span v-text="item.value" class="val"></span>
           </li>
         </ul>
       </div>
       <div class="topicDetailImg">
-        <p v-html="titleMes.goods_desc">
-          {{ titleMes.goods_desc }}
-        </p>
+        <p v-html="titleMes.goods_desc">{{ titleMes.goods_desc }}</p>
       </div>
       <div class="goodsAttribute">
         <div class="shopMes">常见问题</div>
@@ -63,15 +59,22 @@
       </div>
       <div class="goodsAttribute">
         <div class="shopMes">大家都在看</div>
-        <Vcontent :goodlist="goodlist"/>
+        <Vcontent :goodlist="goodlist" />
       </div>
-      <Vcart v-show="flag" :titleMes="titleMes" @flagMethod="flagMethod"/>
+      <Vcart v-show="flag" :titleMes="titleMes" @flagMethod="flagMethod" />
     </main>
     <div class="foot">
       <ul>
         <li class="like">★</li>
-        <li class="cartNum"><i class="iconfont icon-gouwuche"><span>{{count}}</span></i></li>
-        <li class="addCar" @click="addshopcar(titleMes.goods_sn,count,titleMes.primary_product_id)">加入购物车</li>
+        <li class="cartNum">
+          <i class="iconfont icon-gouwuche">
+            <span>{{count}}</span>
+          </i>
+        </li>
+        <li
+          class="addCar"
+          @click="addshopcar(titleMes.goods_sn,count,titleMes.primary_product_id)"
+        >加入购物车</li>
         <li class="buy">立即购买</li>
       </ul>
     </div>
@@ -79,12 +82,12 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { getgoosDetail,getAcount ,getgoodsCount,addCart} from "@/api/index";
+import { getgoosDetail, getAcount, getgoodsCount, addCart } from "@/api/index";
 import "./index.css";
 import Veader from "@/components/goodhead/index.vue";
 import "swiper/css/swiper.min.css";
-import Vcontent from '@/components/allseegood/index.vue'
-import Vcart from '@/components/carDialog/index.vue'
+import Vcontent from "@/components/allseegood/index.vue";
+import Vcart from "@/components/carDialog/index.vue";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 
 export default Vue.extend({
@@ -96,9 +99,9 @@ export default Vue.extend({
       titleMes: {},
       issueMes: [],
       product: [],
-      goodlist:[],
-      flag:false,
-      count:'',
+      goodlist: [],
+      flag: false,
+      count: "",
       swiperOption: {
         loop: true,
         autoplay: {
@@ -120,8 +123,8 @@ export default Vue.extend({
   mounted() {
     const id = this.$route.params.id;
     this._getdetailList(id);
-    this._getAcount(id)
-    this._getgoodsCount()
+    this._getAcount(id);
+    this._getgoodsCount();
   },
   methods: {
     async _getdetailList(id: any) {
@@ -132,24 +135,24 @@ export default Vue.extend({
       this.issueMes = result.data.data.issue;
       this.product = result.data.data.productList;
     },
-    async _getAcount(id:any){
-        const result =await getAcount(id)
-        this.goodlist=result.data.data.goodsList
+    async _getAcount(id: any) {
+      const result = await getAcount(id);
+      this.goodlist = result.data.data.goodsList;
     },
     // 获取购物车商品数量
-    async _getgoodsCount(){
-      const result=await getgoodsCount()
-      this.count=result.data.data.cartTotal.goodsCount
+    async _getgoodsCount() {
+      const result = await getgoodsCount();
+      this.count = result.data.data.cartTotal.goodsCount;
     },
-    checkSize(){
-      this.flag=true
+    checkSize() {
+      this.flag = true;
     },
-    flagMethod(){
-      this.flag=false
+    flagMethod() {
+      this.flag = false;
     },
     // 加入购物车
-    async addshopcar(id:any,count:any,product_id:any){
-      const result=await addCart(id,count,product_id)
+    async addshopcar(id: any, count: any, product_id: any) {
+      const result = await addCart(id, count, product_id);
     }
   }
 });

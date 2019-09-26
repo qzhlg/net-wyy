@@ -38,8 +38,10 @@
     width: 100%;
     height: 15rem;
     .touchClear{
+        // height: 2.5rem;    
+        height: auto;
         width: 100%;
-        height: 2.5rem;
+        position: relative;
         .test{
             width: 100%;
             height: 2.5rem;
@@ -50,6 +52,11 @@
             transition: all .2s linear;
             z-index: 2;
             text-align: center;
+
+        
+            .left{
+                transform: translateX(-60px);
+            }
             .collectItem{
                 width: 100%;
                 height: 2.5rem;
@@ -88,6 +95,20 @@
                     color: red;
                 }
             }
+        }
+        .colse {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 2.5rem;
+            background: red;
+            z-index: 1;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: .36rem;
         }
     }
     
