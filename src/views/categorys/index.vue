@@ -59,7 +59,6 @@ export default Vue.extend({
     };
   },
   mounted() {
-    console.log(this.$route);
     const id = this.$route.params.id;
     this._getCategory(id);
   },
@@ -70,7 +69,6 @@ export default Vue.extend({
       this.navTitle = result.data.data.brotherCategory;
       this.currents = result.data.data.currentCategory;
       this.goods = resultlist.data.data.data;
-      console.log(resultlist.data.data.data);
     },
     async clickItem(id: any, index: any) {
       const result = await getCategory(id);

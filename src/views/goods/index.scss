@@ -215,3 +215,42 @@
         }
     }
 }
+.foot{
+    height: calc(.5rem*2);
+    border-top: 1px #ccc solid;
+    width: 100%;
+    ul{
+        display: flex;
+        li{
+            flex: 1;
+            text-align: center;
+            line-height: calc(.5rem*2);
+        }
+        .like{
+            font-weight: 500;
+            font-size: 30px;
+            color: gold
+        }
+        .cartNum{
+          i{
+            font-size: 30px;
+            position: relative;
+           span{
+               color: red;
+               position: absolute;
+               font-size: 20px;
+               bottom: 0;
+           }
+          }
+            color: #2196f3;
+        }
+        .addCar{
+            color: #fff;
+            background: linear-gradient(90deg, #ff9500, #ff5e3a);
+        }
+        .buy{
+            color: #fff;
+            background: linear-gradient(90deg, #1d62f0, #19d5fd);
+        }
+    }
+}

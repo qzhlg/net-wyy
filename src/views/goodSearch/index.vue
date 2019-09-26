@@ -18,11 +18,11 @@
       </div>
       <div class="searchItemWrap">
         <div class="title">热门搜索</div>
-        <div class="listWrap">
+        <div class="listwrap">
           <button
             v-for="(item, index) in searchList"
             :key="index"
-            class="listItem"
+            class="listitem"
           >
             {{ item.keyword }}
           </button>
@@ -49,8 +49,6 @@ export default Vue.extend({
     async _getSearchdata() {
       const result = await getgoodSearch();
       this.searchList = result.data.data.hotKeywordList;
-      console.log(result.data.data.hotKeywordList);
-      console.log(result.data.data.historyKeywordList);
     },
     goback() {
       this.$router.push("/catelog");

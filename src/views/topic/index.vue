@@ -44,8 +44,10 @@ export default Vue.extend({
     async _getData() {
       const result = await getData();
       this.list = result.data.data.data;
+    
     },
     getDatalist(id: any) {
+      
       this.$router.push(`/toppicdetail/${id}`);
     }
   }

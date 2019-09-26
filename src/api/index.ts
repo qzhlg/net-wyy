@@ -106,22 +106,22 @@ const getDetail = async (id: any) => {
   });
   return result;
 };
-const getComment=async(id:any)=>{
+const getComment=async(id:any,num:any)=>{
     const result=await instance.get('/comment/list',{
         params:{
             valueId:id,
             typeId:1,
-            size:5,
+            size:num,
             page:1,
             
         }
     })
     return result
 }
-const getRelated=async(id:any)=>{
+const getRelated=async(uid:any)=>{
     const result=await instance.get('/topic/related',{
         params:{
-            id:id
+            id:uid
         }
     })
     return result
@@ -137,6 +137,35 @@ const getCollect=async()=>{
 return result
 }
 
+// 用户评论
+const goMessage=async (id:any,val:any)=>{
+  const result=await instance.post('/comment/post',{
+    valueId:id,
+    typeId:1,
+    content:val
+  })
+  return result
+}
+// 获取购物车商品数量
+const getgoodsCount=async ()=>{
+  const result=await instance.get('/cart/goodscount')
+  return result
+}
+// 加入购物车
+const addCart=async (id:any,count:any,product_id:any)=>{
+  console.log(id)
+  const result=await instance.post('/cart/add',{
+    goodsId:id,
+    number:count,
+    productId:product_id
+  })
+  return result
+}
+// 获取购物车的数据
+const getCartData=async ()=>{
+  const result=await instance.get('/cart/index')
+  return result
+}
 export {
   getHomeData,
   getChildData,
@@ -154,7 +183,11 @@ export {
   getbrandList,
   getComment,
   getRelated,
-  getCollect
+  getCollect,
+  goMessage,
+  getgoodsCount,
+  addCart,
+  getCartData
 };
 
 

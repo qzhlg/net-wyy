@@ -17,7 +17,6 @@ export default Vue.extend({
   },
   methods: {
     goBack() {
-      console.log(this.$router);
       this.$router.back()
     }
   }

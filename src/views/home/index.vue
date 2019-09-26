@@ -4,7 +4,7 @@
       <div class="swiper-container">
         <swiper :options="swiperOption" class="banner">
           <swiper-slide v-for="slide in swiperSlides" :key="slide.id">
-            <img :src="slide.image_url" alt="" />
+            <img v-lazy="slide.image_url" alt="" />
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
@@ -146,7 +146,6 @@ export default Vue.extend({
       this.goodslist = result.data.data.categoryList[0].goodsList;
       this.channel=result.data.data.channel
       this.toplist=result.data.data.topicList
-      console.log(result.data.data.topicList)
     },
      gobrandDetail(bid){
       console.log(bid)

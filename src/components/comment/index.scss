@@ -1,0 +1,29 @@
+.common{
+    height: auto;
+    width: 95%;
+    margin: auto;
+    .commonItem{
+        height: calc(.8rem*2);
+        border-bottom: 1px #ccc solid;
+        .Info{
+            height: calc(.4rem*2);
+            display: flex;
+            line-height: calc(.4rem*2);
+            .user{
+                width: 60%;
+                flex: 6;
+                text-align: left;
+            }
+            .date{
+                flex: 4;
+            }
+            
+        }
+        .con{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: calc(.4rem*2);
+        }
+    }
+}

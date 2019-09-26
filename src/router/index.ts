@@ -99,7 +99,7 @@ const routes = [
         name:'getCommentlist',
         component:()=>import ('../views/topicComment/index.vue')
     },{
-        path:'/topicMore/:id',
+        path:'/topicMore',
         name:'topicMore',
         component:()=>import('../views/topicMore/index.vue')
     }
