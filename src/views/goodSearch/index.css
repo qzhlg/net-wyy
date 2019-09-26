@@ -71,13 +71,13 @@
   line-height: .7rem;
 }
 
-.searchItemWrap .listWrap {
+.searchItemWrap .listwrap {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
 
-.searchItemWrap .listWrap .listItem {
+.searchItemWrap .listwrap .listitem {
   display: inline-block;
   white-space: nowrap;
   cursor: pointer;

@@ -35,14 +35,14 @@
       <div class="goodsSize">
         <div class="null"></div>
         <div class="xs">X0</div>
-        <div class="check">选择规格&gt;</div>
+        <div class="check" @click="checkSize">选择规格&gt;</div>
       </div>
       <div class="goodsAttribute">
         <div class="shopMes">商品参数</div>
         <ul>
           <li v-for="(item, index) in sizeInfo" :key="index">
             <span v-text="item.name" class="size"></span>
-            <span v-text="item.value" class="val"></span>
+            <span v-text="item.value" class="val" ></span>
           </li>
         </ul>
       </div>
@@ -58,31 +58,33 @@
             <span>√</span>
             {{ is.question }}
           </div>
-
           <p class="answer">{{ is.answer }}</p>
         </div>
       </div>
       <div class="goodsAttribute">
         <div class="shopMes">大家都在看</div>
-        <!-- <span v-for="acount in goodlist" :key="acount.id" class="goodlist" @click="goGood(acount.id)">
-            <div>
-                <img v-lazy="acount.list_pic_url" alt="">
-            </div>
-            <div v-text="acount.name" class="goodsname"></div>
-            <p>￥{{acount.retail_price}}元</p>
-        </span> -->
         <Vcontent :goodlist="goodlist"/>
       </div>
+      <Vcart v-show="flag" :titleMes="titleMes" @flagMethod="flagMethod"/>
     </main>
+    <div class="foot">
+      <ul>
+        <li class="like">★</li>
+        <li class="cartNum"><i class="iconfont icon-gouwuche"><span>{{count}}</span></i></li>
+        <li class="addCar" @click="addshopcar(titleMes.goods_sn,count,titleMes.primary_product_id)">加入购物车</li>
+        <li class="buy">立即购买</li>
+      </ul>
+    </div>
   </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { getgoosDetail,getAcount } from "@/api/index";
+import { getgoosDetail,getAcount ,getgoodsCount,addCart} from "@/api/index";
 import "./index.css";
 import Veader from "@/components/goodhead/index.vue";
 import "swiper/css/swiper.min.css";
 import Vcontent from '@/components/allseegood/index.vue'
+import Vcart from '@/components/carDialog/index.vue'
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 
 export default Vue.extend({
@@ -95,6 +97,8 @@ export default Vue.extend({
       issueMes: [],
       product: [],
       goodlist:[],
+      flag:false,
+      count:'',
       swiperOption: {
         loop: true,
         autoplay: {
@@ -110,17 +114,18 @@ export default Vue.extend({
     Veader,
     swiper,
     swiperSlide,
-    Vcontent
+    Vcontent,
+    Vcart
   },
   mounted() {
     const id = this.$route.params.id;
     this._getdetailList(id);
     this._getAcount(id)
+    this._getgoodsCount()
   },
   methods: {
     async _getdetailList(id: any) {
       const result = await getgoosDetail(id);
-      console.log(result.data.data);
       this.sizeInfo = result.data.data.attribute;
       this.banner = result.data.data.gallery;
       this.titleMes = result.data.data.info;
@@ -130,7 +135,21 @@ export default Vue.extend({
     async _getAcount(id:any){
         const result =await getAcount(id)
         this.goodlist=result.data.data.goodsList
-        console.log(result.data.data.goodsList)
+    },
+    // 获取购物车商品数量
+    async _getgoodsCount(){
+      const result=await getgoodsCount()
+      this.count=result.data.data.cartTotal.goodsCount
+    },
+    checkSize(){
+      this.flag=true
+    },
+    flagMethod(){
+      this.flag=false
+    },
+    // 加入购物车
+    async addshopcar(id:any,count:any,product_id:any){
+      const result=await addCart(id,count,product_id)
     }
   }
 });

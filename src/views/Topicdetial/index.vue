@@ -87,7 +87,6 @@ export default Vue.extend({
     async _getComment(id:any,num:any) {
       const result = await getComment(id,num);
       this.getcomment = result.data.data.data;
-      console.log( result.data.data.data)
     },
       async _getRelated(id:any) {
       const result = await getRelated(id);

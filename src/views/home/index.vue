@@ -146,7 +146,6 @@ export default Vue.extend({
       this.goodslist = result.data.data.categoryList[0].goodsList;
       this.channel=result.data.data.channel
       this.toplist=result.data.data.topicList
-      console.log(result.data.data.topicList)
     },
      gobrandDetail(bid){
       console.log(bid)

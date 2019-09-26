@@ -128,12 +128,31 @@ const getRelated=async(uid:any)=>{
 }
 // 用户评论
 const goMessage=async (id:any,val:any)=>{
-  console.log(id)
   const result=await instance.post('/comment/post',{
     valueId:id,
     typeId:1,
     content:val
   })
+  return result
+}
+// 获取购物车商品数量
+const getgoodsCount=async ()=>{
+  const result=await instance.get('/cart/goodscount')
+  return result
+}
+// 加入购物车
+const addCart=async (id:any,count:any,product_id:any)=>{
+  console.log(id)
+  const result=await instance.post('/cart/add',{
+    goodsId:id,
+    number:count,
+    productId:product_id
+  })
+  return result
+}
+// 获取购物车的数据
+const getCartData=async ()=>{
+  const result=await instance.get('/cart/index')
   return result
 }
 export {
@@ -153,7 +172,10 @@ export {
   getbrandList,
   getComment,
   getRelated,
-  goMessage
+  goMessage,
+  getgoodsCount,
+  addCart,
+  getCartData
 };
 
 
