@@ -126,6 +126,17 @@ const getRelated=async(uid:any)=>{
     })
     return result
 }
+
+const getCollect=async()=>{
+  const result=await instance.get('/collect/list',{
+    params:{
+      typeId:0,
+      size:1000
+    }
+})
+return result
+}
+
 // 用户评论
 const goMessage=async (id:any,val:any)=>{
   const result=await instance.post('/comment/post',{
@@ -156,14 +167,7 @@ const getCartData=async ()=>{
   return result
 }
 
-const getCollect=async()=>{
-  const result=await instance.get('/collect/list',{
-    params:{
-      typeId:0
-    }
-})
-return result
-}
+
 // 模糊搜索
 const lazySearch=async(keyword:any)=>{
   console.log(keyword)
@@ -195,6 +199,7 @@ export {
   getbrandList,
   getComment,
   getRelated,
+ 
   goMessage,
   getgoodsCount,
   addCart,
