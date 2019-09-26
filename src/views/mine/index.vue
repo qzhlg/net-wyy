@@ -48,7 +48,7 @@ export default Vue.extend({
         // link: ''
       },
       {
-        icon: '.icon-wodedingdan',
+        icon: 'icon-wodedingdan',
         name: '我的订单',
         id:2
       },
