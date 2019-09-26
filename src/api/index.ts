@@ -155,6 +155,16 @@ const getCartData=async ()=>{
   const result=await instance.get('/cart/index')
   return result
 }
+
+const getCollect=async()=>{
+  const result=await instance.get('/collect/list',{
+    params:{
+      typeId:0
+    }
+})
+return result
+}
+
 export {
   getHomeData,
   getChildData,
@@ -175,7 +185,8 @@ export {
   goMessage,
   getgoodsCount,
   addCart,
-  getCartData
+  getCartData,
+  getCollect
 };
 
 

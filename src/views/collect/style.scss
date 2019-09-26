@@ -1,0 +1,94 @@
+.noTabPageContent {
+    padding-top: 1.04rem;
+    min-height: 100%;
+    
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1rem;
+    background: white;
+    box-shadow: 0 0.04rem 0.08rem 0 rgba(0,0,0,.12), 0 0 6px 0 rgba(0,0,0,.04);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    .left {
+        width: .6rem;
+        font-size: 0.4rem;
+    }
+    .title {
+        flex: 1 1;
+        font-size: .32rem;
+    }
+    .right {
+        width: .6rem;
+    }
+   
+}
+.header>div {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.collectList{
+    width: 100%;
+    height: 15rem;
+    .touchClear{
+        width: 100%;
+        height: 2.5rem;
+        .test{
+            width: 100%;
+            height: 2.5rem;
+            position: relative;
+            height: auto;
+            background: #19d5fd;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+            z-index: 2;
+            text-align: center;
+            .collectItem{
+                width: 100%;
+                height: 2.5rem;
+                padding: .2rem;
+                overflow: hidden;
+                background: white;
+                display: flex;
+                .collectImg{
+                    width: auto;
+                    height: 100%;
+                }
+                img {
+                    border-style: none;
+                }
+            }
+            .onePx_bottom {
+                position: relative;
+            }
+            .collectMsg{
+                flex: 1 1;
+                div {
+                    height: 33.333%;
+                    display: flex;
+                    align-items: center;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                div:nth-child(1) {
+                    font-size: .32rem;
+                }
+               div:nth-child(2) {
+                    color: darkgrey;
+                }
+                div:nth-child(3) {
+                    color: red;
+                }
+            }
+        }
+    }
+    
+}

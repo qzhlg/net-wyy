@@ -31,14 +31,9 @@ a{
 .footer{
     height: calc(.5rem*2);
     border-top: 1px #ccc solid;
-    ul{
-        display: flex;
-        li{
-            flex: 1;
-            text-align: center;
-            line-height: calc(.5rem*2)
-        }
-    }
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 .head{
    

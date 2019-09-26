@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <div class="searchWrap">
-      <header class="serachInput">
+      <header class="serachInput" >
         <i></i>
         <span @click="goSearch">搜索商品，共239款好物</span>
       </header>

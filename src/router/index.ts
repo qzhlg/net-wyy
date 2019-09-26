@@ -86,12 +86,15 @@ const routes = [
     {
         path: '/mine',
         name: 'mine',
-        meta:{
-            autorization:true
-        },
         
         component: ()=>import ('../views/mine/index.vue')
-    },{
+    },
+    {
+      path:'/collect/:id',
+      name:'collect',
+      component: ()=>import ('../views/collect/index.vue')
+    },
+    {
         path:'/getCommentlist/:id',
         name:'getCommentlist',
         component:()=>import ('../views/topicComment/index.vue')
