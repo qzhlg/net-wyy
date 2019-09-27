@@ -10,13 +10,11 @@
           </div>
           <div class="collectList">
             <div class="touchClear" v-for="item in getcollect" :key="item.id">
-            
               <div
                 class="test left"
                 @touchstart="(e)=>_touchStart(e,item.id)"
                 @touchmove="_touchMove"
                 @touchend="_touchEnd"
-                
                 :style="ind===item.id?txtStyle:''"
               >
                 <div class="collectItem onePx_bottom">
@@ -28,9 +26,7 @@
                     <div>￥{{item.retail_price}}</div>
                   </div>
                 </div>
-
               </div>
-
               <div class="colse" @click.prevent="deleteItem(index)">删除</div>
             </div>
           </div>
@@ -49,7 +45,6 @@ import './style.scss'
 export default Vue.extend({
   name: "collct",
   components: {
-   
   },
   props:{
  index: Number
@@ -116,7 +111,6 @@ export default Vue.extend({
       deleteItem: function(index:any) {
         this.$emit('deleteItem', index);
       }
-    }
-  
+    } 
 });
 </script>
