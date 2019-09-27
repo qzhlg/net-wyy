@@ -73,10 +73,10 @@
         </div>
       </div>
 
-      <div class="cateGoryBox" v-for="item in categorylist" :key="item.id">
+      <div class="cateGoryBox" v-for="(item,index) in categorylist" :key="index">
         <div class="cateGoryName">{{ item.name }}</div>
         <div class="cateGoryGoodsWrap">
-          <a tag="div" v-for="item in goodslist" :key="item.id" @click="goGoods(item.id)">
+          <a tag="div" v-for="item in goodslist[index].goodsList" :key="item.id" @click="goGoods(item.id)">
             <div class="goodsItemImg">
               <img
                 v-lazy="item.list_pic_url"
@@ -116,6 +116,7 @@ export default Vue.extend({
       swiperSlides: [],
       brandlist: [],
       newGoodslist: [],
+     
       hotGoodslist: [],
       categorylist: [],
       goodslist: [],
@@ -138,14 +139,18 @@ export default Vue.extend({
   methods: {
     async _getList() {
       const result = await getList();
-      this.swiperSlides = result.data.data.banner;
-      this.brandlist = result.data.data.brandList;
-      this.newGoodslist = result.data.data.newGoodsList;
-      this.hotGoodslist = result.data.data.hotGoodsList;
-      this.categorylist = result.data.data.categoryList;
-      this.goodslist = result.data.data.categoryList[0].goodsList;
-      this.channel=result.data.data.channel
-      this.toplist=result.data.data.topicList
+      const {banner,brandList,newGoodsList,hotGoodsList,categoryList,channel,topicList}=result.data.data
+      this.swiperSlides = banner;
+      this.brandlist = brandList;
+      this.newGoodslist = newGoodsList;
+      this.hotGoodslist = hotGoodsList;
+      this.categorylist = categoryList;
+      this.goodslist = categoryList
+      // [0].goodsList;
+      this.channel=channel
+      this.toplist=topicList
+      console.log(categoryList)
+    
     },
      gobrandDetail(bid){
       console.log(bid)

@@ -66,15 +66,19 @@ export default Vue.extend({
     async _getCategory(id: any) {
       const result = await getCategory(id);
       const resultlist = await getgoodsMessage(id);
-      this.navTitle = result.data.data.brotherCategory;
-      this.currents = result.data.data.currentCategory;
-      this.goods = resultlist.data.data.data;
+      const {brotherCategory,currentCategory}=result.data.data
+      const {data}=resultlist.data.data
+      this.navTitle = brotherCategory;
+      this.currents = currentCategory;
+      this.goods = data;
     },
     async clickItem(id: any, index: any) {
       const result = await getCategory(id);
       const resultlist = await getgoodsMessage(id);
-      this.currents = result.data.data.currentCategory;
-      this.goods = resultlist.data.data.data;
+      const {currentCategory}=result.data.data
+      const {data}=resultlist.data.data
+      this.currents = currentCategory;
+      this.goods = data;
       this.current = index;
     },
     godetail(id: any) {

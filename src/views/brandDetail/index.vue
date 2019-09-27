@@ -27,13 +27,13 @@ export default Vue.extend({
     methods:{
         async _getbrandDetail(id:any){
             const result=await getbrandDetail(id)
-            this.brandlist=result.data.data.brand
-            console.log(result.data.data.brand)
+            const {brand}=result.data.data
+            this.brandlist=brand
         },
         async _getbrandList(id:any){
             const result=await getbrandList(id)
-            this.brandData=result.data.data.data
-            console.log(result.data.data.data)
+            const {data}=result.data.data
+            this.brandData=data
         }
     }
 })

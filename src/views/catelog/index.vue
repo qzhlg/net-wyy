@@ -74,15 +74,17 @@ export default Vue.extend({
     // 初始化
     async _getHomeData() {
       const result = await getHomeData();
-      this.list = result.data.data.categoryList;
-      this.currentitem = result.data.data.currentCategory;
-      this.currentlist = result.data.data.currentCategory.subCategoryList;
+      const {categoryList,currentCategory}=result.data.data
+      this.list = categoryList;
+      this.currentitem = currentCategory;
+      this.currentlist = currentCategory.subCategoryList;
     },
     // 获取当前分类信息和子分类
     async _getChildData(id: any, index: any) {
       const result = await getChildData(id);
-      this.currentitem = result.data.data.currentCategory;
-      this.currentlist = result.data.data.currentCategory.subCategoryList;
+      const {currentCategory}=result.data.data
+      this.currentitem = currentCategory;
+      this.currentlist = currentCategory.subCategoryList;
       this.current = index;
     },
     goSearch() {

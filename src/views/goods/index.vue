@@ -67,7 +67,7 @@
       <ul>
         <li class="like">★</li>
         <li class="cartNum">
-          <i class="iconfont icon-gouwuche">
+          <i class="iconfont icon-gouwuche" @click="goCart">
             <span>{{count}}</span>
           </i>
         </li>
@@ -129,20 +129,23 @@ export default Vue.extend({
   methods: {
     async _getdetailList(id: any) {
       const result = await getgoosDetail(id);
-      this.sizeInfo = result.data.data.attribute;
-      this.banner = result.data.data.gallery;
-      this.titleMes = result.data.data.info;
-      this.issueMes = result.data.data.issue;
-      this.product = result.data.data.productList;
+      const {attribute,gallery,info,issue,productList}=result.data.data
+      this.sizeInfo =attribute;
+      this.banner =gallery;
+      this.titleMes =info;
+      this.issueMes =issue;
+      this.product =productList;
     },
     async _getAcount(id: any) {
       const result = await getAcount(id);
-      this.goodlist = result.data.data.goodsList;
+      const {goodsList}=result.data.data
+      this.goodlist = goodsList;
     },
     // 获取购物车商品数量
     async _getgoodsCount() {
       const result = await getgoodsCount();
-      this.count = result.data.data.cartTotal.goodsCount;
+      const {goodsCount}=result.data.data.cartTotal
+      this.count = goodsCount;
     },
     checkSize() {
       this.flag = true;
@@ -153,6 +156,9 @@ export default Vue.extend({
     // 加入购物车
     async addshopcar(id: any, count: any, product_id: any) {
       const result = await addCart(id, count, product_id);
+    },
+    goCart(){
+      this.$router.push('/cart')
     }
   }
 });

@@ -43,7 +43,8 @@ export default Vue.extend({
   methods: {
     async _getData() {
       const result = await getData();
-      this.list = result.data.data.data;
+      const {data}=result.data.data
+      this.list = data;
     
     },
     getDatalist(id: any) {

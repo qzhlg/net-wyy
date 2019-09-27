@@ -199,7 +199,6 @@ export {
   getbrandList,
   getComment,
   getRelated,
- 
   goMessage,
   getgoodsCount,
   addCart,
