@@ -73,8 +73,9 @@ export default Vue.extend({
   methods:{
     async _getCartData(){
       const result=await getCartData()
-      this.shopList=result.data.data.cartList
-      console.log(result.data.data.cartList)
+      const {cartList}=result.data.data
+      this.shopList=cartList
+     
     }
   }
 });

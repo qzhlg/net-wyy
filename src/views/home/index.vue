@@ -8,7 +8,6 @@
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
-
         <div class="swiper-pagination"></div>
       </div>
       <div class="channelWrap">
@@ -18,9 +17,7 @@
           </dt>
           <dd v-text="item.name"></dd>
         </dl>
-      
       </div>
-
       <div class="brandBox">
         <div class="brandTitle">品牌制造商直供</div>
           <div class="brandWrap">
@@ -43,7 +40,6 @@
           </dl>
         </div>
       </div>
-
       <div class="hotGoodsBox">
         <div class="hotGoodsTitle">人气推荐</div>
         <div class="hotGoodsWrap">
@@ -59,7 +55,6 @@
           </dl>
         </div>
       </div>
-
       <div class="topGoodsBox">
         <div class="topGoodsTitle">专题精选</div>
         <div class="topGoodsWrap">
@@ -72,7 +67,6 @@
         </swiper>
         </div>
       </div>
-
       <div class="cateGoryBox" v-for="(item,index) in categorylist" :key="index">
         <div class="cateGoryName">{{ item.name }}</div>
         <div class="cateGoryGoodsWrap">
@@ -116,7 +110,6 @@ export default Vue.extend({
       swiperSlides: [],
       brandlist: [],
       newGoodslist: [],
-     
       hotGoodslist: [],
       categorylist: [],
       goodslist: [],
@@ -146,11 +139,8 @@ export default Vue.extend({
       this.hotGoodslist = hotGoodsList;
       this.categorylist = categoryList;
       this.goodslist = categoryList
-      // [0].goodsList;
       this.channel=channel
       this.toplist=topicList
-      console.log(categoryList)
-    
     },
      gobrandDetail(bid){
       console.log(bid)
