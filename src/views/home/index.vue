@@ -30,15 +30,7 @@
       </div>
       <div class="newGoodsBox">
         <div class="newGoodsTitle">新品首发</div>
-        <div class="newGoodsWrap">
-          <dl class="newGoodsItem" v-for="item in newGoodslist" :key="item.id" @click="goGoods(item.id)">
-            <dt class="imgLazyload loadEnd">
-              <img v-lazy="item.list_pic_url" alt="" />
-            </dt>
-            <dd class="newGoodsName">{{ item.name }}</dd>
-            <dd class="newGoodsPrice">￥{{ item.retail_price }}</dd>
-          </dl>
-        </div>
+        <Vitem :homeData="newGoodslist"/>
       </div>
       <div class="hotGoodsBox">
         <div class="hotGoodsTitle">人气推荐</div>
@@ -97,13 +89,14 @@ import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/css/swiper.min.css";
 import { getList } from "@/api/index";
 import BScroll from "better-scroll";
-
+import Vitem from '@/components/homeitem/index.vue'
 export default Vue.extend({
   name: "home",
   components: {
     Foot,
     swiper,
-    swiperSlide
+    swiperSlide,
+    Vitem
   },
   data() {
     return {

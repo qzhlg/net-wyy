@@ -70,8 +70,12 @@ const userAddress = async () => {
 };
 // 获取专题数据
 const getData = async () => {
-  const result = await instance.get("/topic/list");
-
+  const result = await instance.get("/topic/list",{
+    params:{
+      page:1,
+      size:100
+    }
+  })
   return result;
 };
 // 首页数据

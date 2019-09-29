@@ -38,7 +38,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import './index.css'
+import './index.scss'
 import {addCart} from '@/api/index'
 export default Vue.extend({
     name:'carDialog',

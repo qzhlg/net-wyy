@@ -45,7 +45,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import "./index.css";
+import "./index.scss";
 import { getCategory, getgoodsMessage } from "@/api/index";
 export default Vue.extend({
   name: "categorys",

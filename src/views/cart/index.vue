@@ -56,7 +56,7 @@
 import Vue from "vue";
 import Foot from "@/components/foot.vue";
 import {getCartData} from '@/api/index'
-import './index.css'
+import './index.scss'
 export default Vue.extend({
   name: "cart",
   components: {

@@ -72,5 +72,5 @@ export default Vue.extend({
 });
 </script>
 <style lang="scss" scoped>
-@import url("./login.css");
+@import url("./login.scss");
 </style>
