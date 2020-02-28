@@ -1,213 +1,251 @@
 <template>
-  <div
-    class="my-scroll"
-    ref="myScroll"
-    @touchstart="touchStart($event)"
-    @touchmove="touchMove($event)"
-    @touchend="touchEnd($event)"
-  >
-    <div class="scroll-top" :style="{ height: top + 'px' }">
-      <div v-if="aspect == 2">
-        <p v-if="state == 6">
-          下拉刷新
-        </p>
-        <p v-if="state == 1">
-          <br />
-          刷新中
-        </p>
-        <p v-if="state == 2">松开刷新</p>
-        <p v-if="state == 3">
-          <br />
-          刷新完成
-        </p>
+  <div class="BScrollwrap">
+    <div class="bscrollChild">
+      <div class="categoryDetail">
+        <div>{{msgName.name}}</div>
+        <div>{{msgName.frontName}}</div>
       </div>
-    </div>
-    <!-- top -->
-    <div
-      class="scroll-list"
-      :style="{ transform: 'translate3d(0, ' + top + 'px, 0)' }"
-    >
-      <slot name="scrollList"></slot>
-      <div class="scroll-bottom">
-        <div v-if="state == 4">加载中</div>
-        <div v-if="state == 5">加载完成</div>
-        <div v-if="state == 7">没有更多</div>
-      </div>
+
+      <slot :data="list.value"></slot>
+
+      <p class="bsUp">{{msgUp}}</p>
+      <p class="bsDown">{{msgDown}}</p>
     </div>
   </div>
 </template>
-<script type="text/javascript">
-// import Load from "../assets/Load.gif";
+
+
+<script>
+/**
+ * @props {
+ *   list: {
+ *     query?: {[key:string]:any}, 查询条件
+ *     limit?: number, 每次查询的数量 默认10
+ *     count: number, 最后一次查询结果返回的长度 用来控制loadMore的显示与否
+ *     refreshDispatch?: string pull-refresh 查询的store dispacthName, 当需要下拉刷新的时候才传
+ *     loadMoreDispatch?: string loadMore 查询的store dispacthName
+ *     value: Array<{[key:string]:any}> 查询结果
+ *   }
+ * }
+ */
+import BScroll from "better-scroll";
+import { mapActions, mapState } from "vuex";
+
 export default {
-  name: "myScroll",
   props: {
-    page: {
-      type: Object, //counter:当前页  pageStart:开始页数  pageEnd:结束页数  total:总页数
-      require: true
+    msgName: {
+      default: ()=>{return {}}
     },
-    onRefresh: {
-      //刷新回调
-      type: Function,
-      require: true
-    },
-    onPull: {
-      //加载回调
-      type: Function,
-      require: true
-    },
-    getScrollTop: {
-      //获取滚动条位置
-      type: Function
-    },
-    setScrollPage: {
-      //改变滚动条位置
-      type: Function
+    list: {
+      type: Object,
+      default: ()=>{
+        return {
+          query: {},
+          limit: 10,
+          count: 1000,
+          refreshDispatch: 'category/pullRefresh',
+          loadMoreDispatch: 'category/loadMore',
+          value: [1,2,3,4,5,6,7,8,9,10]
+        }
+      }
     }
   },
   data() {
     return {
-      pageX: 0,
-      pageY: 0,
-      state: 0,
-      scrollPosition: 0,
-      myScroll: null,
-      myScrollList: null,
-      top: 0,
-      aspect: 0, //1:向下 2:向上
-      listHeight: 0
+      BsDate: {
+        up: "释放刷新...",
+        upend: "刷新中...",
+        down: "释放加载...",
+        downEnd: "上拉加载..."
+      },
+      msgDown: '',
+      msgUp: ''
     };
   },
-  created() {
-    this.$root.$on("setState", index => {
-      //修改状态
-      this.state = index;
-      if (index == 5 || index == 3) {
-        setTimeout(() => {
-          this.state = 0;
-          this.top = 0;
-        }, 300);
-      }
-    });
-    this.$root.$on("ScrollTop", top => {
-      //修改滚动条位置
-      this.myScroll.scrollTop = top;
-    });
-  },
   methods: {
-    touchStart(e) {
-      //触摸事件
-      this.pageX = e.targetTouches[0].pageX;
-      this.pageY = e.targetTouches[0].pageY;
+    // ...mapActions.call({
+    //   pullRefresh:  this.list.refreshDispatch,
+    //   loadMore: this.list.loadMoreDispatch
+    // }),
+    async pullRefresh(payload){
+      await this.$store.dispatch(this.list.refreshDispatch, payload);
     },
-    touchMove(e) {
-      //触摸滑动事件
-      this.scrollPosition = this.myScroll.scrollTop; //获取滚动条位置
-      if (e.targetTouches[0].pageY > this.pageY) {
-        //向上滑动
-        this.aspect = 2;
-        if (this.myScroll.scrollTop == 0) {
-          let diff =
-            e.targetTouches[0].pageY - this.pageY - this.scrollPosition;
-          this.top = Math.pow(diff, 0.9);
-          let ranget = (diff / document.body.clientHeight) * 100; //计算在屏幕上滑动了多少
-          if (ranget > 20) {
-            this.state = 2;
-          } else if (ranget < 15) {
-            this.state = 6;
-          }
-          e.preventDefault();
-        }
-      } else if (this.state != 4) {
-        //向上滑动
-        this.aspect = 1;
+    async loadMore(payload){
+      await this.$store.dispatch(this.list.loadMoreDispatch, payload);
+    },
+    scrollUp(e) {
+      let maxH = Math.abs(this.Bs.maxScrollY),
+        h = Math.abs(e.y);
+      // console.log(maxH,'最大高度',h,'当前高度')
+      if (h > maxH + 100) {
+        this.isFlag = true;
+        this.msgDown = this.BsDate.down;
+      } else {
+        this.isFlag = false;
+        this.msgDown = this.BsDate.downEnd;
       }
-    },
-    touchEnd(e) {
-      if ((this.aspect == 2 && this.state == 2) || this.state == 1) {
-        //上拉处理
-        this.top = 100;
-        this.state = 1;
-        this.topCallback();
-      } else if (this.aspect == 2) {
-        this.state = 0;
-        this.top = 0;
+      if (e.y > 70) {
+        this.msgUp = this.BsDate.up;
+      } else {
+        this.msgUp = this.BsDate.upend;
       }
-    },
-    topCallback() {
-      //刷新回调
-      this.onRefresh(this.state);
-    },
-    bottomCallback() {
-      //加载回调
-      this.state = 4;
-      this.onPull(this.state);
     }
   },
   mounted() {
-    this.myScroll = this.$refs.myScroll; //获取滑条dom
-    this.myScrollList = this.myScroll.children[1]; //获取列表dom
+    this.$nextTick(() => {
+      if (!this.Bs) {
+        this.Bs = new BScroll(".BScrollwrap", {
+          scrollY: true,
+          click: true,
+          probeType: 3,
+          mouseWheel: {
+            speed: 20,
+            invert: false,
+            easeTime: 300
+          },
+          pullDownRefresh: {
+            threshold: 70,
+            stop: 45,
+          },
+          pullUpLoad: {
+            threshold: -45
+          }
+        });
+        this.Bs.on("scroll", this.scrollUp);
+        this.Bs.on("scrollEnd", this.scrollEnd);
+        // 监听下拉刷新事件
+        this.Bs.on("pullingDown", async ()=>{
+          await this.pullRefresh();
+          console.log('网络请求结束')
+          this.Bs.finishPullDown()
+        })
 
-    this.myScroll.addEventListener("scroll", e => {
-      //监听滚动条事件
-      let listHeight = this.myScrollList.offsetHeight; //列表总高度
-      let listScrollTop = e.target.scrollTop + this.myScroll.offsetHeight; //当前滚动条位置
-
-      if (this.state == 0 && listHeight - listScrollTop < 100) {
-        this.bottomCallback();
+        // 监听上拉刷新事件
+        this.Bs.on("pullingUp", async ()=>{
+          await this.loadMore({page: list.page+1});
+          this.Bs.finishPullUp()
+        })
+      } else {
+        this.Bs.refresh();
       }
-
-      if (this.getScrollTop) this.getScrollTop(e.target.scrollTop); //返回X，Y
     });
   }
 };
 </script>
-<style lang="scss" scoped>
-.my-scroll {
-  color: #fff;
-  max-width: 100%;
-  max-height: 100%;
+<style scoped lang="scss">
+.BScrollwrap {
+  flex: 1;
   height: 100%;
+  margin-top: 0.45rem;
   overflow: hidden;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  will-change: transform;
-  transition: all 450ms;
-  backface-visibility: hidden;
-  perspective: 1000;
-  position: relative;
-  .scroll-top {
-    text-align: center;
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
+  .bscrollChild {
     width: 100%;
-    div {
-      display: flex;
-      height: auto;
-      width: 100%;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      i {
-        flex: 1 0 100%;
-        display: block;
-        height: 0.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    position: relative;
+    .categoryDetail {
+      padding: 0.1rem 0;
+      div:nth-of-type(1) {
+        height: 0.3rem;
+        line-height: 0.3rem;
+        text-align: center;
       }
-      img {
-        width: 0.8rem;
-      }
-      p {
-        flex: 1 0 100%;
+      div:nth-of-type(2) {
+        color: #666;
+        height: 0.25rem;
+        line-height: 0.25rem;
+        font-size: 0.14rem;
+        text-align: center;
       }
     }
+    .asd {
+      width: 100%;
+      height: 0.45rem;
+      line-height: 0.45rem;
+      text-align: center;
+    }
+    .bsUp {
+      position: absolute;
+      top: -0.45rem;
+      left: 0;
+      width: 100%;
+      height: 0.45rem;
+      color: red;
+      text-align: center;
+      line-height: 0.45rem;
+      background: #ccc;
+      color: #333;
+    }
+    .bsDown {
+      position: absolute;
+      bottom: -0.45rem;
+      left: 0;
+      height: 0.45rem;
+      width: 100%;
+      color: red;
+      text-align: center;
+      line-height: 0.45rem;
+      background: #ccc;
+      color: #333;
+    }
+    .cateWrap {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .catebox {
+      display: flex;
+      flex-wrap: wrap;
+      .cateGoryItem {
+        width: 50%;
+        text-align: center;
+        box-sizing: border-box;
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        background: white;
+        img {
+          width: 100%;
+          height: auto;
+        }
+        p {
+          height: 0.3rem;
+          line-height: 0.3rem;
+          font-size: 0.12rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        overflow: hidden;
+      }
+    }
+
+    .cateGoryItemss {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 0.3rem;
+        height: 0.3rem;
+      }
+      p {
+        font-size: 0.14rem;
+        height: 0.3rem;
+        line-height: 0.3rem;
+      }
+    }
+    .clerbootom {
+      border-bottom: 0;
+    }
+    .cateGoryItemss {
+      border-bottom: 0;
+    }
   }
-  .scroll-list {
-    overflow: hidden;
-  }
-  .scroll-bottom {
-    text-align: center;
-    line-height: 40px;
+  .item{
+    height: 1rem;
   }
 }
 </style>

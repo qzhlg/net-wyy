@@ -56,7 +56,7 @@
 import Vue from "vue";
 import Foot from "@/components/foot.vue";
 import {getCartData} from '@/api/index'
-import './index.css'
+import './index.scss'
 export default Vue.extend({
   name: "cart",
   components: {
@@ -73,8 +73,9 @@ export default Vue.extend({
   methods:{
     async _getCartData(){
       const result=await getCartData()
-      this.shopList=result.data.data.cartList
-      console.log(result.data.data.cartList)
+      const {cartList}=result.data.data
+      this.shopList=cartList
+     
     }
   }
 });

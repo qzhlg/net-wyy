@@ -34,7 +34,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import "./index.css";
+import "./index.scss";
 import { getgoodSearch,lazySearch } from "@/api/index";
 export default Vue.extend({
   name: "goodSearch",

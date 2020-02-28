@@ -52,7 +52,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Foot from "@/components/foot.vue";
-import "./index.css";
+import "./index.scss";
 import { getHomeData, getChildData, getgoodsMessage } from "@/api/index";
 export default Vue.extend({
   name: "catelog",

@@ -38,6 +38,7 @@
 import Vue from "vue";
 import { loginMethod } from "@/api/index";
 import { setStorage } from "@/utils/index";
+import './login.scss'
 console.log(loginMethod);
 export default Vue.extend({
   name: "login",
@@ -71,6 +72,4 @@ export default Vue.extend({
   }
 });
 </script>
-<style lang="scss" scoped>
-@import url("./login.css");
-</style>
+

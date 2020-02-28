@@ -1,17 +1,12 @@
 <template>
   <div class="box">
     <main class="main">
-      <div
-        class="count"
-        v-for="item in list"
-        :key="item.id"
-        @click="getDatalist(item.id)"
-      >        
-        <img :src="item.scene_pic_url" alt="" />
+      <div class="count" v-for="item in list" :key="item.id" @click="getDatalist(item.id)">
+        <img :src="item.scene_pic_url" alt />
         <div class="box-box">
           <div class="tium">{{ item.title }}</div>
           <div class="tium">
-            <span> {{ item.subtitle }}</span>
+            <span>{{ item.subtitle }}</span>
           </div>
           <div class="tiu">{{ item.price_info }}元起</div>
         </div>
@@ -20,37 +15,37 @@
     <Foot />
   </div>
 </template>
-
 <script lang="ts">
 import Vue from "vue";
+import { mapState } from "vuex";
 import Foot from "@/components/foot.vue";
 import "./style.scss";
 import axios from "axios";
-import { getData } from "@/api/index";
 export default Vue.extend({
   name: "topic",
   components: {
     Foot
   },
-  data() {
-    return {
-      list: []
-    };
+  computed:{
+    //   ...mapState({
+    //   list:state=>state['Topic'].list
+    // })
+        ...mapState({
+      list:state=>state.Topic.list
+    })
   },
   mounted() {
     this._getData();
+    console.log(this.$store.state.Topic.list)
   },
   methods: {
-    async _getData() {
-      const result = await getData();
-      const {data}=result.data.data
-      this.list = data;
-    
+    _getData() {
+      this.$store.dispatch("getTopic");
     },
     getDatalist(id: any) {
-      
       this.$router.push(`/toppicdetail/${id}`);
     }
-  }
+  },
+  
 });
 </script>

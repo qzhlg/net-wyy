@@ -23,7 +23,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import './index.css'
+import './index.scss'
 export default Vue.extend({
     name:'comment',
     props:['commentList'],

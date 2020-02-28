@@ -73,6 +73,9 @@ export default Vue.extend({
       this.getcollect = result.data.data;
       // console.log(result.data.data)
     },
+    gogoods(id:any){
+      this.$router.push(`/goods/${id}`)
+    },
     getHui(){
       this.$router.go(-1)
     },

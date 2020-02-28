@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="userPower">
-        <div class="userP" v-for="item in userlist" :key="item.id" @click="collctList(item.id) ">
+        <div class="userP" v-for="(item,index) in userlist" :key="item.id" @click="index===0?collctList():addressList()">
           <i :class="item.icon"></i>
           <div>{{item.name}}</div>
         </div>
@@ -100,8 +100,11 @@ export default Vue.extend({
     this.phone=window.localStorage.getItem('nideShopUser')
   },
   methods: {
-    collctList(id) {
-      this.$router.push(`/collect/${id}`)
+    collctList() {
+      this.$router.push('/collect')
+    },
+    addressList(){
+      this.$router.push('/address')
     },
     // 退出登录
     getloginOut() {

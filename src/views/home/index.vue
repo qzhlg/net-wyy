@@ -8,7 +8,6 @@
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
-
         <div class="swiper-pagination"></div>
       </div>
       <div class="channelWrap">
@@ -18,9 +17,7 @@
           </dt>
           <dd v-text="item.name"></dd>
         </dl>
-      
       </div>
-
       <div class="brandBox">
         <div class="brandTitle">品牌制造商直供</div>
           <div class="brandWrap">
@@ -33,17 +30,8 @@
       </div>
       <div class="newGoodsBox">
         <div class="newGoodsTitle">新品首发</div>
-        <div class="newGoodsWrap">
-          <dl class="newGoodsItem" v-for="item in newGoodslist" :key="item.id" @click="goGoods(item.id)">
-            <dt class="imgLazyload loadEnd">
-              <img v-lazy="item.list_pic_url" alt="" />
-            </dt>
-            <dd class="newGoodsName">{{ item.name }}</dd>
-            <dd class="newGoodsPrice">￥{{ item.retail_price }}</dd>
-          </dl>
-        </div>
+        <Vitem :homeData="newGoodslist"/>
       </div>
-
       <div class="hotGoodsBox">
         <div class="hotGoodsTitle">人气推荐</div>
         <div class="hotGoodsWrap">
@@ -59,20 +47,16 @@
           </dl>
         </div>
       </div>
-
       <div class="topGoodsBox">
         <div class="topGoodsTitle">专题精选</div>
-        <div class="topGoodsWrap">
-      <swiper :options="swiperOption" class="banner">
-          <swiper-slide v-for="slide in toplist" :key="slide.id" @click="goGoods(item.id)">
-          <img :src="slide.item_pic_url" alt=""/>
-             <h3>{{slide.title}}</h3>
-          </swiper-slide>
-          <div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
-        </div>
+    <swiper :options="swiperOption" class="banner">
+      <swiper-slide v-for="slide in toplist" :key="slide.id">
+        <img v-lazy="slide.image_url" alt />
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+       <div class="swiper-pagination"></div>
+    </swiper>
       </div>
-
       <div class="cateGoryBox" v-for="(item,index) in categorylist" :key="index">
         <div class="cateGoryName">{{ item.name }}</div>
         <div class="cateGoryGoodsWrap">
@@ -98,16 +82,17 @@
 import Vue from "vue";
 import Foot from "@/components/foot.vue";
 import "./style.scss";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
-
-import "swiper/css/swiper.min.css";
 import { getList } from "@/api/index";
 import BScroll from "better-scroll";
-
+import Vitem from '@/components/homeitem/index.vue'
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+import "swiper/css/swiper.min.css";
 export default Vue.extend({
   name: "home",
   components: {
     Foot,
+    Vitem,
+   
     swiper,
     swiperSlide
   },
@@ -116,7 +101,6 @@ export default Vue.extend({
       swiperSlides: [],
       brandlist: [],
       newGoodslist: [],
-     
       hotGoodslist: [],
       categorylist: [],
       goodslist: [],
@@ -146,11 +130,8 @@ export default Vue.extend({
       this.hotGoodslist = hotGoodsList;
       this.categorylist = categoryList;
       this.goodslist = categoryList
-      // [0].goodsList;
       this.channel=channel
       this.toplist=topicList
-      console.log(categoryList)
-    
     },
      gobrandDetail(bid){
       console.log(bid)

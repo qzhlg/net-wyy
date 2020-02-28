@@ -83,7 +83,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { getgoosDetail, getAcount, getgoodsCount, addCart } from "@/api/index";
-import "./index.css";
+import "./index.scss";
 import Veader from "@/components/goodhead/index.vue";
 import "swiper/css/swiper.min.css";
 import Vcontent from "@/components/allseegood/index.vue";
