@@ -90,9 +90,13 @@ const routes = [
         component: ()=>import ('../views/mine/index.vue')
     },
     {
-      path:'/collect/:id',
+      path:'/collect',
       name:'collect',
       component: ()=>import ('../views/collect/index.vue')
+    },{
+      path:'/address',
+      name:'address',
+      component:()=>import ('../views/address/index.vue')
     },
     {
         path:'/getCommentlist/:id',

@@ -49,15 +49,13 @@
       </div>
       <div class="topGoodsBox">
         <div class="topGoodsTitle">专题精选</div>
-        <div class="topGoodsWrap">
-      <swiper :options="swiperOption" class="banner">
-          <swiper-slide v-for="slide in toplist" :key="slide.id" @click="goGoods(item.id)">
-          <img :src="slide.item_pic_url" alt=""/>
-             <h3>{{slide.title}}</h3>
-          </swiper-slide>
-          <div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
-        </div>
+    <swiper :options="swiperOption" class="banner">
+      <swiper-slide v-for="slide in toplist" :key="slide.id">
+        <img v-lazy="slide.image_url" alt />
+      </swiper-slide>
+      <div class="swiper-pagination" slot="pagination"></div>
+       <div class="swiper-pagination"></div>
+    </swiper>
       </div>
       <div class="cateGoryBox" v-for="(item,index) in categorylist" :key="index">
         <div class="cateGoryName">{{ item.name }}</div>
@@ -84,19 +82,19 @@
 import Vue from "vue";
 import Foot from "@/components/foot.vue";
 import "./style.scss";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
-
-import "swiper/css/swiper.min.css";
 import { getList } from "@/api/index";
 import BScroll from "better-scroll";
 import Vitem from '@/components/homeitem/index.vue'
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+import "swiper/css/swiper.min.css";
 export default Vue.extend({
   name: "home",
   components: {
     Foot,
+    Vitem,
+   
     swiper,
-    swiperSlide,
-    Vitem
+    swiperSlide
   },
   data() {
     return {

@@ -9,7 +9,7 @@
             <div class="right"></div>
           </div>
           <div class="collectList">
-            <div class="touchClear" v-for="item in getcollect" :key="item.id">
+            <div class="touchClear" v-for="item in getcollect" :key="item.id" @click="gogoods(item.id)">
             
               <div
                 class="test left"
@@ -77,6 +77,9 @@ export default Vue.extend({
       const result = await getCollect();
       this.getcollect = result.data.data;
       // console.log(result.data.data)
+    },
+    gogoods(id:any){
+      this.$router.push(`/goods/${id}`)
     },
     getHui(){
       this.$router.go(-1)
